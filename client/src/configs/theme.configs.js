@@ -8,7 +8,7 @@ export const themeModes = {
 
 const themeConfigs = {
     custom: ({mode}) => {
-        const customPallete = mode === themeModes.dark ? {
+        const customPalette = mode === themeModes.dark ? {
             primary: {
                 main: "#ff0000",
                 contrastText: "#ffffff"
@@ -32,5 +32,19 @@ const themeConfigs = {
                 default: colors.grey["100"]
             }
         }
+
+        return createTheme({
+            palette: {
+                mode,
+                ...customPalette
+            },
+            components: {
+                MuiButton: {
+                    defaultProps: { disableElevation: true }
+                }
+            }
+        });
     }
-}
+};
+
+export default themeConfigs;

@@ -35,4 +35,4 @@ export default {
     created,
     unauthorized,
     notFound
-}
+};

@@ -13,7 +13,7 @@ export const themeModeSlice = createSlice({
 });
 
 export const {
-    setTheMode
+    setThemeMode
 } = themeModeSlice.actions;
 
 export default themeModeSlice.reducer;
