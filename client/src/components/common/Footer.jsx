@@ -19,7 +19,7 @@ const Footer = () => {
                 <Box>
                     {menuConfigs.main.map((item, index) => (
                         <Button
-                        ket={index}
+                        key={index}
                         sx={{ color: "inherit"}}
                         component={Link}
                         to={item.path}
