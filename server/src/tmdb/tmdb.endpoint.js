@@ -13,7 +13,7 @@ const tmdbEndpoints = {
     ),
     // Получение списка жанров по типу медиа
     mediaGenres: ({ mediaType }) => tmdbConfig.getUrl(
-        `genre/${mediaType}/List`
+        `genre/${mediaType}/list`
     ),
     // Получение списка актеров по типу медиа и ID
     mediaCredits: ({ mediaType, mediaId }) => tmdbConfig.getUrl(

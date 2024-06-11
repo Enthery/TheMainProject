@@ -11,6 +11,8 @@ const validate = (req, res, next) => {
     // Если в результате валидации есть ошибки, эта строка отправляет ответ со статусом 400 и сообщением первой ошибки в качестве тела ответа.
 
     if(!errors.isEmpty()) return res.status(400).json(errors.array()[0].msg);
+
+    next();
 };
 
 export default { validate };

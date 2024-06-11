@@ -34,13 +34,13 @@ const SigninForm = ({ switchAuthState }) => {
             const {response, err} = await userApi.signin(values)
             setIsLoginRequest(false)
 
-            if(response) {
+            if (response) {
                 signinForm.resetForm()
                 dispatch(setUser(response))
                 dispatch(setAuthModalOpen(false))
                 toast.success("Sign in success")
             }
-            if(err) setErrorMessage(err.message)
+            if (err) setErrorMessage(err.message)
         }
     })
 
@@ -79,7 +79,7 @@ const SigninForm = ({ switchAuthState }) => {
         sx={{ marginTop: 4 }}
         loading={isLoginRequest}
         >
-            sigh in
+            sign in
         </LoadingButton>
         <Button
         fullWidth
