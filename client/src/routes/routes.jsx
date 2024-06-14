@@ -39,7 +39,7 @@ const routes = [
         path: "/password-update",
         element: (
             <ProtectedPage>
-                <PasswordUpdate/>
+                <PasswordUpdate />
             </ProtectedPage>
         ),
         state: "password.update"
@@ -48,7 +48,7 @@ const routes = [
         path: "/favorites",
         element: (
             <ProtectedPage>
-                <FavoriteList/>
+                <FavoriteList />
             </ProtectedPage>
         ),
         state: "favorites"
@@ -57,18 +57,18 @@ const routes = [
         path: "/reviews",
         element: (
             <ProtectedPage>
-                <ReviewList/>
+                <ReviewList />
             </ProtectedPage>
         ),
-        state: "review"
+        state: "reviews"
     },
     {
         path: "/:mediaType",
-        element: <MediaList/>
+        element: <MediaList />
     },
     {
-        path: "/:mediaType/:mediaid",
-        element: <MediaDetail/>
+        path: "/:mediaType/:mediaId",
+        element: <MediaDetail />
     }
 ];
 

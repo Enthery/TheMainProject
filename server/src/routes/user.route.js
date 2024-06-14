@@ -12,7 +12,8 @@ router.post(
     "/signup",
     body("username")
     .exists().withMessage("username is required")
-    .isLength({ min: 8 }).withMessage("username minimum 8 characters").custom(async value => {
+    .isLength({ min: 8 }).withMessage("username minimum 8 characters")
+    .custom(async value => {
         const user = await userModel.findOne({ username: value });
         if(user) return Promise.reject("username already used");
     }),
@@ -80,8 +81,8 @@ router.get(
 router.post(
     "/favorites",
     tokenMiddleware.auth,
-    body("mediatype")
-    .exists().withMessage("mediatype is required")
+    body("mediaType")
+    .exists().withMessage("mediaType is required")
     .custom(type => ["movie", "tv"].includes(type)).withMessage("mediaType invalid"),
     body("mediaId")
     .exists().withMessage("mediaId is required")

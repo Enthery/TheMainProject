@@ -23,6 +23,7 @@ const App = () => {
       position="bottom-left"
       autoClose={5000}
       hideProgressBar={false}
+      newestOnTop={false}
       closeOnClick
       pauseOnFocusLoss
       pauseOnHover
@@ -34,7 +35,7 @@ const App = () => {
       {/* app routes */}
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<MainLayout/>}>
+          <Route path="/" element={<MainLayout />}>
             {routes.map((route, index) => (
               route.index ? (
                 <Route

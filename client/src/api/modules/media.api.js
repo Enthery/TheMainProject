@@ -11,7 +11,8 @@ const mediaApi = {
     getList: async ({ mediaType, mediaCategory, page }) => {
         try {
             const response = await publicClient.get(
-                mediaEndpoints.list({ mediaType, mediaCategory, page }));
+                mediaEndpoints.list({ mediaType, mediaCategory, page })
+            );
     
             return { response };
         } catch (err) { return { err }; }

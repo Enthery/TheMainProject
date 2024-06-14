@@ -11,13 +11,14 @@ const userEndpoints = {
 const userApi = {
     signin: async ({ username, password }) => {
         try {
+            console.log("send request");
             const response = await publicClient.post(
                 userEndpoints.signin, 
                 { username, password }
             );
 
             return { response };
-        } catch (err) {return { err }; }
+        } catch (err) { console.log("err"); return { err }; }
     },
     signup: async ({ username, password, confirmPassword, displayName }) => {
         try {
@@ -39,7 +40,7 @@ const userApi = {
     passwordUpdate: async ({ password, newPassword, confirmNewPassword }) => {
         try {
             const response = await privateClient.put(
-                userEndpoints.signup,
+                userEndpoints.passwordUpdate,
                 { password, newPassword, confirmNewPassword }
             );
 
