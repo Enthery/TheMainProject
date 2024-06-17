@@ -24,6 +24,11 @@ import { addFavorite, appFavorite, removeFavorite, setListFavorites } from "../r
 
 import CastSlide from "../components/common/CastSlide"
 import MediaVideosSlide from "../components/common/MediaVideosSlide"
+import BackdropSlide from "../components/common/BackdropSlide"
+import PosterSlide from "../components/common/PosterSlide"
+import RecommendSlide from "../components/common/RecommendSlide"
+import MediaSlide from "../components/common/MediaSlide"
+import MediaReview from "../components/common/MediaReview"
 
 const MediaDetail = () => {
   const { mediaType, mediaId } = useParams()
@@ -40,6 +45,7 @@ const MediaDetail = () => {
   const videoRef = useRef(null)
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     const getMedia = async () => {
       dispatch(setGlobalLoading(true))
       const { response, err } = await mediaApi.getDetail({ mediaType, mediaId })
@@ -222,7 +228,7 @@ const MediaDetail = () => {
         {/* media videos */}
         <div ref={videoRef} style={{ paddingTop: "2rem" }}>
           <Container header="Videos">
-                    <MediaVideosSlide videos={media.videos.results.splice(0, 5)} />
+                    <MediaVideosSlide videos={[...media.videos.results].splice(0, 5)} />
           </Container>
         </div>
         {/* media videos */}
@@ -230,10 +236,37 @@ const MediaDetail = () => {
         {/* media backdrop */}
         {media.images.backdrops.length > 0 && (
           <Container header="backdrops">
-
+            <BackdropSlide backdrops={media.images.backdrops} />
           </Container>
         )}
         {/* media backdrop */}
+
+        {/* media posters */}
+        {media.images.posters.length > 0 && (
+          <Container header="posters">
+            <PosterSlide posters={media.images.posters} />
+          </Container>
+        )}
+        {/* media posters */}
+
+        {/* media reviews */}
+        <MediaReview reviews={media.reviews} media={media} mediaType={mediaType} />
+        {/* media reviews */}
+
+        {/* media recommendation */}
+        <Container header="you may also like">
+          {media.recommend.length > 0 && (
+            <RecommendSlide medias={media.recommend} mediaType={mediaType} />
+          )}
+          {media.recommend.length === 0 && (
+            <MediaSlide
+            mediaType={mediaType}
+            mediaCategory={tmdbConfigs.mediaCategory.top_rated}
+            />
+          )}
+        </Container>
+        {/* media recommendation */}
+        
       </Box>
     </>
     ) : null
