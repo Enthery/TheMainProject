@@ -11,6 +11,7 @@ import MediaGrid from "../components/common/MediaGrid"
 import { setAppState } from "../redux/features/appStateSlice"
 import { setGlobalLoading } from "../redux/features/globalLoadingSlice"
 import { toast } from "react-toastify"
+import usePrevious from "../hooks/usePrevious";
 
 const MediaList = () => {
   const { mediaType } = useParams()
@@ -20,6 +21,7 @@ const MediaList = () => {
   const [currCategory, setCurrCategory] = useState(0)
   const [currPage, setCurrPage] = useState(1)
 
+  const prevMediaType = usePrevious(mediaType);
   const dispatch = useDispatch()
 
   const mediaCategories = useMemo(() => ["popular", "top_rated"], [])

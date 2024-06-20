@@ -19,58 +19,58 @@ import genreApi from "../../api/modules/genre.api"
 import mediaApi from "../../api/modules/media.api"
 
 const HeroSlide = ({ mediaType, mediaCategory }) => {
-    const theme = useTheme()
-    const dispatch = useDispatch()
+  const theme = useTheme();
+  const dispatch = useDispatch();
 
-    const [movies, setMovies] = useState([])
-    const [genres, setGenres] = useState([])
+  const [movies, setMovies] = useState([]);
+  const [genres, setGenres] = useState([]);
 
-    useEffect(() => {
-        const getMedias = async () => {
-            const { response, err } = await mediaApi.getList({
-                mediaType,
-                mediaCategory,
-                page: 1
-            })
-            
-            if (response) setMovies(response.results)
-            if (err) toast.error(err.message)
-            dispatch(setGlobalLoading(false))
-        }
+  useEffect(() => {
+    const getMedias = async () => {
+      const { response, err } = await mediaApi.getList({
+        mediaType,
+        mediaCategory,
+        page: 1
+      });
 
-        const getGenres = async () => {
-            dispatch(setGlobalLoading(true))
-            const { response, err } = await genreApi.getList({ mediaType })
-            
-            // console.log('Media API response:', response);
-            if (response) {
-                setGenres(response.genres)
-                getMedias()
-            }
-            if (err) {
-                toast.error(err.message);
-                setGlobalLoading(false)
-            }
-        }; 
+      if (response) setMovies(response.results);
+      if (err) toast.error(err.message);
+      dispatch(setGlobalLoading(false));
+    };
 
-        getGenres();
-    }, [mediaType, mediaCategory, dispatch])
+    const getGenres = async () => {
+      dispatch(setGlobalLoading(true));
+      const { response, err } = await genreApi.getList({ mediaType });
+
+      if (response) {
+        setGenres(response.genres);
+        getMedias();
+      }
+      if (err) {
+        toast.error(err.message);
+        setGlobalLoading(false);
+      }
+    };
+
+    getGenres();
+  }, [mediaType, mediaCategory, dispatch]);
+    
     return (
-        <Box sx={{
-            position: "relative",
-            color: "primary.contrastText",
-            "&::before": {
-                content: '""',
-                width: "100%",
-                height: "30%",
-                position: "absolute",
-                bottom: 0,
-                left: 0,
-                zIndex: 2,
-                pointerEvents: "none",
-                ...uiConfigs.style.gradientBgImage[theme.palette.mode]
-            }
-        }}>
+      <Box sx={{
+        position: "relative",
+        color: "primary.contrastText",
+        "&::before": {
+          content: '""',
+          width: "100%",
+          height: "30%",
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          zIndex: 2,
+          pointerEvents: "none",
+          ...uiConfigs.style.gradientBgImage[theme.palette.mode]
+        }
+      }}>
             <Swiper
         grabCursor={true}
         loop={true}
